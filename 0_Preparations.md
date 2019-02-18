@@ -1,6 +1,6 @@
 # 0 Preparations
 
-Before you start building your custom linux distribution for the ECO32 you need do download and build a various number of packages and tools. Make sure you follow this guide step by step and don't skip any!
+Before you start building your custom linux distribution for the ECO32 you need to download and build a various number of packages and tools. Make sure you follow this guide step by step and don't skip any!
 
 ### 1. Create the folder structure and base shell variable
 
@@ -18,7 +18,7 @@ From now on ${CLFS} points to the created directory.
 
 Now it is time to create the basic folder structure for everything we needed during the build process:
 ```
-mkdir -p ${CLFS}/{eco32,cross-tools,sysroot,packages,build}
+mkdir -p ${CLFS}/{eco32,toolchain,sysroot,packages,build}
 ```
 
 ### 2. Build the ECO32 Project
@@ -56,4 +56,4 @@ Download all these packages to ${CLFS}/packages.
 The Kernel, GCC, Binutils and musl-libc are not included here because we will obtain these directly from git.
 The ports of these packages are not present in any upstream version. Using the source from git will give use the opportunity to build the latest ports and prevents complex patching of existing sources.
 
-**NOTE:** Make sure to download the correct versions because these are confirmed to work. If you chose any other versions than the ones above it is at your own risk that something may not work!
+**NOTE:** Make sure to download the correct versions because these are confirmed to work. If you choose any versions other than the ones above it is at your own risk that something may not work!

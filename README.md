@@ -1,6 +1,6 @@
 # Cross Linux From Scratch For ECO32
 
-This document will provide a Step-By-Step guide on how to build a Cross Linux From Ccratch for the ECO32.
+This document will provide a Step-By-Step guide on how to build a Cross Linux From Scratch for the ECO32.
 With this guide we will be able to build a very basic Linux system that can be enhanced later on.
 
 This guide is divided in 7 parts which are:

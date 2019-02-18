@@ -62,7 +62,7 @@ cd mpfr-3.1.3
 
 Configure the package to meet the required configuration:
 ```
-./configure --prefix=${CLFS}/toolchain --disable-static --with-gmp=${CLFS}/toolchain LDFLAGS="-Wl,-rpath,${CLFS}/toolchain/lib"
+LDFLAGS="-Wl,-rpath,${CLFS}/toolchain/lib" ./configure --prefix=${CLFS}/toolchain --disable-static --with-gmp=${CLFS}/toolchain
 ```
 
 Now build and install MPFR:
@@ -86,7 +86,7 @@ cd mpc-1.0.3
 
 Configure the package to meet the required configuration:
 ```
-./configure --prefix=${CLFS}/toolchain --disable-static --with-gmp=${CLFS}/toolchain --with-mpfr=${CLFS}/toolchain LDFLAGS="-Wl,-rpath,${CLFS}/toolchain/lib"
+LDFLAGS="-Wl,-rpath,${CLFS}/toolchain/lib" ./configure --prefix=${CLFS}/toolchain --disable-static --with-gmp=${CLFS}/toolchain --with-mpfr=${CLFS}/toolchain
 ```
 
 Now build and install MPC:
@@ -110,7 +110,7 @@ cd isl-0.15
 
 Configure the package to meet the required configuration:
 ```
-./configure --prefix=${CLFS}/toolchain --disable-static --with-gmp-prefix=${CLFS}/toolchain LDFLAGS="-Wl,-rpath,${CLFS}/toolchain/lib"
+LDFLAGS="-Wl,-rpath,${CLFS}/toolchain/lib" ./configure --prefix=${CLFS}/toolchain --disable-static --with-gmp-prefix=${CLFS}/toolchain
 ```
 
 Now build and install ISL:
@@ -136,7 +136,7 @@ git clone https://github.com/mh0fmann/eco32-binutils
 
 Configure Binutils to meet the required configuration:
 ```
-eco32-binutils/configure --prefix=${CLFS}/toolchain --target=eco32-unknown-linux-gnu --with-sysroot=${CLFS}/sysroot --with-lib-path=${CLFS}/sysroot/lib --disable-nls --disable-static --disable-multilib --enable-gold=yes --enable-plugins --enable-threads --disable-werror AR=ar AS=as
+AR=ar AS=as eco32-binutils/configure --prefix=${CLFS}/toolchain --target=eco32-unknown-linux-musl --with-sysroot=${CLFS}/sysroot --with-lib-path=${CLFS}/sysroot/usr/lib --disable-nls --disable-static --disable-multilib --enable-gold=yes --enable-plugins --enable-threads --disable-werror
 ```
 
 Build and install Binutils
@@ -174,7 +174,7 @@ touch ${CLFS}/sysroot/usr/include/limits.h
 
 Configure GCC to meet the required configuration for stage 1:
 ```
-eco32-gcc/configure --prefix=${CLFS}/toolchain --target=eco32-unknown-linux-gnu --with-sysroot=${CLFS} --with-local-prefix=${CLFS}/sysroot/usr/local --with-native-system-header-dir=/usr/include --disable-shared --with-mpfr=${CLFS}/toolchain --with-gmp=${CLFS}/toolchain --with-isl=${CLFS}/toolchain --with-mpc=${CLFS}/toolchain --without-headers --with-newlib --disable-decimal-float --disable-libgomp --disable-libssp --disable-libatomic --disable-libitm --disable-libsanitizer --disable-libquadmath --disable-libvtv --disable-libcilkrts --disable-libstdc++-v3 --disable-threads --disable-multilib --with-system-zlib --enable-languages=c --with-glibc-version=2.22 AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/toolchain/lib"
+AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/toolchain/lib" eco32-gcc/configure --prefix=${CLFS}/toolchain --target=eco32-unknown-linux-musl --with-sysroot=${CLFS} --with-local-prefix=${CLFS}/sysroot/usr/local --with-native-system-header-dir=/usr/include --disable-shared --with-mpfr=${CLFS}/toolchain --with-gmp=${CLFS}/toolchain --with-isl=${CLFS}/toolchain --with-mpc=${CLFS}/toolchain --without-headers --with-newlib --disable-decimal-float --disable-libgomp --disable-libssp --disable-libatomic --disable-libitm --disable-libsanitizer --disable-libquadmath --disable-libvtv --disable-libcilkrts --disable-libstdc++-v3 --disable-threads --disable-multilib --with-system-zlib --enable-languages=c
 ```
 
 Build and install GCC stage 1
@@ -203,7 +203,7 @@ git clone https://github.com/mh0fmann/eco32-musl.git ./
 
 Configure musl-libc to meet the required configuration:
 ```
-./configure CROSS_COMPILE=${CLFS}/toolchain/bin/eco32-unknown-linux-gnu- --prefix=${CLFS}/sysroot --target=eco32 --disable-shared
+./configure CROSS_COMPILE=${CLFS}/toolchain/bin/eco32-unknown-linux-musl- --prefix=${CLFS}/sysroot/usr --target=eco32 --disable-shared
 ```
 
 Build and install musl-libc:
@@ -214,7 +214,7 @@ make install
 
 Create debug version libc since GCC stage 2 needs it:
 ```
-ln -s ${CLFS}/sysroot/lib/libc.a ${CLFS}/sysroot/lib/libg.a
+ln -s ${CLFS}/sysroot/usr/lib/libc.a ${CLFS}/sysroot/usr/lib/libg.a
 ```
 
 ### 9 Build and install GCC stage 2
@@ -245,11 +245,11 @@ echo -en '#define STANDARD_STARTFILE_PREFIX_2 ""\n' >>${SSPF}
 
 Configure GCC stage 2 to meet the required configuration:
 ```
-eco32-gcc/configure --prefix=${CLFS}/toolchain --target=eco32-unknown-linux-gnu --with-sysroot=${CLFS}/sysroot --with-local-prefix=${CLFS}/sysroot/usr/local --with-native-system-header-dir=/usr/include --disable-nls --disable-shared --enable-languages=c --disable-multilib --with-mpc=${CLFS}/toolchain --with-mpfr=${CLFS}/toolchain --with-gmp=${CLFS}/toolchain --with-isl=${CLFS}/toolchain --with-system-zlib AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/toolchain/lib"
+AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/toolchain/lib" eco32-gcc/configure --prefix=${CLFS}/toolchain --target=eco32-unknown-linux-musl --with-sysroot=${CLFS}/sysroot --with-local-prefix=${CLFS}/sysroot/usr/local --with-native-system-header-dir=/usr/include --disable-nls --disable-shared --enable-languages=c --disable-multilib --with-mpc=${CLFS}/toolchain --with-mpfr=${CLFS}/toolchain --with-gmp=${CLFS}/toolchain --with-isl=${CLFS}/toolchain --with-system-zlib
 ```
 
 Build and install GCC stage 2:
 ```
-make AS_FOR_TARGET="eco32-unknown-linux-gnu-as" LD_FOR_TARGET="eco32-unknown-linux-gnu-ld"
+make
 make install
 ```
