@@ -21,7 +21,7 @@ make ARCH=eco32 defconfig
 
 Now build the kernel and create a Barebox compatible uImage:
 ```
-make ARCH=eco32 CORSS_COMPILE=${CLFS}/toolchain/bin/eco32-unknown-linux-musl- uImage
+make ARCH=eco32 CROSS_COMPILE=${CLFS}/toolchain/bin/eco32-unknown-linux-musl- uImage
 ```
 
 ### 2 Copy the kernel to the sysroot
