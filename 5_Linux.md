@@ -26,6 +26,6 @@ make ARCH=eco32 CROSS_COMPILE=${CLFS}/toolchain/bin/eco32-unknown-linux-musl- uI
 
 ### 2 Copy the kernel to the sysroot
 ```
-mkdir -p {CLFS}/sysroot/boot
+mkdir -p ${CLFS}/sysroot/boot
 cp arch/eco32/boot/uImage ${CLFS}/sysroot/boot/
 ```
