@@ -24,3 +24,8 @@ Build the Barebox bundled together with a partition bootrecord:
 ```
 make ARCH=eco32 CROSS_COMPILE=${CLFS}/toolchain/bin/eco32-unknown-linux-musl- barebox.pbootblk
 ```
+
+Copy mkimage tool to toolchain:
+```
+cp scripts/mkimage ${CLFS}/toolchain/bin/eco32-unknown-linux-musl-mkimage
+```
