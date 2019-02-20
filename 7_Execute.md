@@ -45,5 +45,7 @@ Now we can boot the kernel:
 bootm uImage
 ```
 
+**NOTE:** When init runs it may wait for a key press to continue. In this case just press enter on the console to get the boot process going!
+
 ### 5 Using the system
 Once the kernel finished booting everything should be self explained..
