@@ -14,11 +14,11 @@ cd ${CLFS}/build/11-busybox
 
 Extract the downloaded package and enter it:
 ```
-tar -xf ${CLFS}/packages/busybox-1.28.2.tar.bz2
-cd busybox-1.28.2
+tar -xf ${CLFS}/packages/busybox-1.31.0.tar.bz2
+cd busybox-1.31.0
 ```
 
-Copy the config file busybox.config from this repository to the top-level source directory of Busybox in ${CLFS}/build/11-busybox/busybox-1.28.2 and rename it to .config
+Copy the config file busybox.config from this repository to the top-level source directory of Busybox in ${CLFS}/build/11-busybox/busybox-1.31.0 and rename it to .config
 
 Now build busybox with the configuration provided:
 ```

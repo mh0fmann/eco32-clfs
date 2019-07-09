@@ -49,7 +49,7 @@ The packages we need during the build are the following:
 * ISL 0.15
 * MPC 1.0.3
 * MPFR 3.1.3
-* Busybox 1.28.2
+* Busybox 1.31.0
 
 Download all these packages to ${CLFS}/packages.
 
