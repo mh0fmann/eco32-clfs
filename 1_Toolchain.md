@@ -174,7 +174,7 @@ touch ${CLFS}/sysroot/usr/include/limits.h
 
 Configure GCC to meet the required configuration for stage 1:
 ```
-AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/toolchain/lib" eco32-gcc/configure --prefix=${CLFS}/toolchain --target=eco32-unknown-linux-musl --with-sysroot=${CLFS} --with-local-prefix=${CLFS}/sysroot/usr/local --with-native-system-header-dir=/usr/include --disable-shared --with-mpfr=${CLFS}/toolchain --with-gmp=${CLFS}/toolchain --with-isl=${CLFS}/toolchain --with-mpc=${CLFS}/toolchain --without-headers --with-newlib --disable-decimal-float --disable-libgomp --disable-libssp --disable-libatomic --disable-libitm --disable-libsanitizer --disable-libquadmath --disable-libvtv --disable-libcilkrts --disable-libstdc++-v3 --disable-threads --disable-multilib --with-system-zlib --enable-languages=c
+AR=ar LDFLAGS="-Wl,-rpath,${CLFS}/toolchain/lib" eco32-gcc/configure --prefix=${CLFS}/toolchain --target=eco32-unknown-linux-musl --with-sysroot=${CLFS}/sysroot --with-local-prefix=${CLFS}/sysroot/usr/local --with-native-system-header-dir=/usr/include --disable-shared --with-mpfr=${CLFS}/toolchain --with-gmp=${CLFS}/toolchain --with-isl=${CLFS}/toolchain --with-mpc=${CLFS}/toolchain --without-headers --with-newlib --disable-decimal-float --disable-libgomp --disable-libssp --disable-libatomic --disable-libitm --disable-libsanitizer --disable-libquadmath --disable-libvtv --disable-libcilkrts --disable-libstdc++-v3 --disable-threads --disable-multilib --with-system-zlib --enable-languages=c
 ```
 
 Build and install GCC stage 1
